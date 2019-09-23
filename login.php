@@ -97,7 +97,7 @@ if($stfid !=""){
 						
 					</div>
 					
-					<img src="<?php echo ASSETS_URL; ?>/img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
+					<!--<img src="<?php echo ASSETS_URL; ?>/img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">-->
 
 				</div>
 
