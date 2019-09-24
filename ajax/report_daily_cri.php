@@ -14,6 +14,7 @@ $txtfinishdate="";
 $txtstartdate1="";
 $txtfinishdate1="";
 $tr="";
+$sql="";
 $conn = mysqli_connect($hostDB,$userDB,$passDB,$databaseName);
 mysqli_set_charset($conn, "UTF8");
 
@@ -23,14 +24,23 @@ if(!empty($_GET["startdate"])){
 }
 if(!empty($_GET["finishdate"])){
     $txtfinishdate1=$_GET["finishdate"];
-    $txtstartdate=substr($_GET["finishdate"],strlen($_GET["finishdate"])-4)."-".substr($_GET["finishdate"],3,2)."-".substr($_GET["finishdate"],0,2);
+    $txtfinishdate=substr($_GET["finishdate"],strlen($_GET["finishdate"])-4)."-".substr($_GET["finishdate"],3,2)."-".substr($_GET["finishdate"],0,2);
 }
+
 if(!empty($_GET["radio1"]) && $_GET["radio1"]==="daily"){
 	$chkDailyCheck="checked='checked'";
 
 }else{
 	$chkSummaryCheck="checked='checked'";
 }
+
+$sql="Select bil.bill_date, foo.foods_name, sum(bild.amount) as amount "
+	."From t_bill bil "
+	."Left Join t_bill_detail bild on bil.bill_id = bild.bill_id  "
+	."Left Join b_foods foo on foo.foods_id = bild.foods_id "
+	."Where bil.active = '1' and bill_date >= '".$txtstartdate."' and bill_date <= '".$txtfinishdate."' "
+	."Group By bil.bill_date, foo.foods_name";
+
 ?>
 <form action="" id="smart-form-register" class="smart-form" method="GET">
     <div class="row">
