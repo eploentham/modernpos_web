@@ -41,6 +41,14 @@ $sql="Select bil.bill_date, foo.foods_name, sum(bild.amount) as amount "
 	."Where bil.active = '1' and bill_date >= '".$txtstartdate."' and bill_date <= '".$txtfinishdate."' "
 	."Group By bil.bill_date, foo.foods_name";
 
+if ($rComp=mysqli_query($conn,$sql)){
+	while($aRec = mysqli_fetch_array($rComp)){
+		$reRecId = $aRec["rec_id"];
+		$retRetDate = substr($retRetDate,strlen($retRetDate)-2)."-".substr($retRetDate,5,2)."-".substr($retRetDate,0,4);
+	}
+}
+
+mysqli_close($conn);
 ?>
 <form action="" id="smart-form-register" class="smart-form" method="GET">
     <div class="row">
