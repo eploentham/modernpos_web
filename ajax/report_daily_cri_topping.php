@@ -29,12 +29,13 @@ if(!empty($_GET["finishdate"])){
 $statusreport="";
 if(!empty($_GET["radio1"]) && $_GET["radio1"]==="daily"){
 	$chkDailyCheck="checked='checked'";
-	$sql="Select bil.bill_date, foo.foods_name, sum(bild.amount) as amount "
+	$sql="Select bil.bill_date, footopping.foods_topping_name, sum(bild.amount) as amount "
 		."From t_bill bil "
 		."Left Join t_bill_detail bild on bil.bill_id = bild.bill_id  "
 		."Left Join b_foods foo on foo.foods_id = bild.foods_id "
+		."Left Join b_foods_topping footopping on foo.foods_topping_id = footopping.foods_topping_id "
 		."Where bil.active = '1' and bill_date >= '".$txtstartdate."' and bill_date <= '".$txtfinishdate."' "
-		."Group By bil.bill_date, foo.foods_name";
+		."Group By bil.bill_date, footype.foods_type_name";
 	$statusreport="daily";
 }else{
 	$chkSummaryCheck="checked='checked'";
@@ -42,11 +43,12 @@ if(!empty($_GET["radio1"]) && $_GET["radio1"]==="daily"){
 		."From t_bill bil "
 		."Left Join t_bill_detail bild on bil.bill_id = bild.bill_id  "
 		."Left Join b_foods foo on foo.foods_id = bild.foods_id "
+		."Left Join b_foods_topping footopping on foo.foods_topping_id = footopping.foods_topping_id "
 		."Where bil.active = '1' and bill_date >= '".$txtstartdate."' and bill_date <= '".$txtfinishdate."' "
 		."Group By bil.bill_date";
 	$statusreport="sum";
 }
-
+//echo $sql;
 $bilDate="";
 $fooName="";
 $amt="";
@@ -58,7 +60,7 @@ if ($rComp=mysqli_query($conn,$sql)){
 		$bilDate = substr($bilDate,strlen($bilDate)-2)."-".substr($bilDate,5,2)."-".substr($bilDate,0,4);
 		$amt = $aRec["amount"];
 		if($statusreport=="daily") {
-			$fooName = $aRec["foods_name"];
+			$fooName = $aRec["foods_topping_name"];
 			$tr .= "<tr><td>".$bilDate."</td><td>".$fooName."</td><td>".$amt."</td></tr>";
 		}
 		else{

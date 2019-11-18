@@ -44,25 +44,29 @@ $page_nav = array(
 				'title' => 'รายงานประจำวัน',
 				'icon' => 'fa-folder-open',
 				'sub' => array(
-					'alert' => array(
+					'rptdailybill' => array(
 						'title' => 'ยอดขายประจำวัน',
 						'url' => "ajax/report_daily_cri.php"
 					),
-					'progress' => array(
+					'rptdailytype' => array(
 						'title' => 'ยอดขาย ตามประเภท',
-						'url' => 'ajax/smartui-progress.php'
+						'url' => 'ajax/report_daily_cri_type.php'
 					),
-					'progress' => array(
+					'rptdailycategory' => array(
 						'title' => 'ยอดขาย ตามกลุ่ม',
-						'url' => 'ajax/smartui-progress.php'
+						'url' => 'ajax/report_daily_cri_cat.php'
 					),
-					'progress' => array(
+					'rptdailytopping' => array(
 						'title' => 'ยอดขาย ตามTopping',
-						'url' => 'ajax/smartui-progress.php'
+						'url' => 'ajax/report_daily_cri_topping.php'
 					),
-					'progress' => array(
+					'rptdailytimeperiod' => array(
+						'title' => 'ยอดขาย ตามช่วงเวลา',
+						'url' => 'ajax/report_daily_cri_timeperiod.php'
+					),
+					'rptdailycloseday' => array(
 						'title' => 'ยอดขาย ปิดวัน',
-						'url' => 'ajax/smartui-progress.php'
+						'url' => 'ajax/report_daily_cri_closeday.php'
 					)
 				)
 			),
