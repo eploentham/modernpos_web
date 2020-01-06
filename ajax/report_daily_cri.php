@@ -17,7 +17,7 @@ $tr="";
 $sql="";
 $conn = mysqli_connect($hostDB,$userDB,$passDB,$databaseName);
 mysqli_set_charset($conn, "UTF8");
-
+//
 if(!empty($_GET["startdate"])){
     $txtstartdate1=$_GET["startdate"];
     $txtstartdate=substr($_GET["startdate"],strlen($_GET["startdate"])-4)."-".substr($_GET["startdate"],3,2)."-".substr($_GET["startdate"],0,2);
