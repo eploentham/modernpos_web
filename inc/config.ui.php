@@ -77,6 +77,16 @@ $page_nav = array(
 			"reportyearly" => array(
 				"title" => "รายงานประจำปี",
 				"url" => 'ajax/smartui-tab.php'
+			),
+			"stock" => array(
+				"title" => "Stock",
+				"icon" => 'fa-folder-open',
+				'sub' => array(
+					'stockcard' => array(
+						'title' => 'Stock Card',
+						'url' => "ajax/stock_card.php"
+					)
+				)
 			)
 		)
 	)
